@@ -1,6 +1,6 @@
 package cn.zkz.animal.dao;
 
-import cn.zkz.animal.po.AnimalInfo;
+import cn.zkz.animal.model.po.AnimalInfo;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

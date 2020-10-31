@@ -1,10 +1,9 @@
-package cn.zkz.animal.po;
-
-import cn.zkz.animal.service.IKeyValueService;
-import org.springframework.beans.factory.annotation.Autowired;
+package cn.zkz.animal.model.po;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.lang.reflect.Field;
+
 @Entity
 @Table(name = "t_animal_info")
 public class AnimalInfo implements Serializable {
@@ -45,6 +44,37 @@ public class AnimalInfo implements Serializable {
     private Integer animalBridthDay;
     @Column(name = "animal_xingge")
     private String animalXingge;
+
+    private String startTime;
+    private String endTime;
+
+    public static String findByColName(String colName) {
+        Class<AnimalInfo> clazz = AnimalInfo.class;
+        Field[] declaredFields = clazz.getDeclaredFields();
+        for (Field f : declaredFields) {
+            Column annotation = f.getAnnotation(Column.class);
+            if (annotation != null && f.getName().equals(colName)) {
+                return annotation.name();
+            }
+        }
+        return "";
+    }
+
+    public String getStartTime() {
+        return startTime;
+    }
+
+    public void setStartTime(String startTime) {
+        this.startTime = startTime;
+    }
+
+    public String getEndTime() {
+        return endTime;
+    }
+
+    public void setEndTime(String endTime) {
+        this.endTime = endTime;
+    }
 
     public String getAnimalXingge() {
         return animalXingge;

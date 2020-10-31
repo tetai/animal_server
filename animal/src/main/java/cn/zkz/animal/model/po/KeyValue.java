@@ -1,4 +1,4 @@
-package cn.zkz.animal.po;
+package cn.zkz.animal.model.po;
 
 import javax.persistence.*;
 import java.io.Serializable;
