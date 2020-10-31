@@ -8,6 +8,9 @@ import java.util.HashMap;
 
 public class Result extends HashMap<String, Object> {
 
+    public final static Integer INVALID_OPENID_CODE = 1000;
+    public final static String INVALID_OPENID_MSG = "获取openId失败，请重新获取code请求";
+
     private  final String MESSAGE_SUCCESS_VUALE = "OK";
     private  final String MESSAGE_SUCCESS_KEY = "message";
     private  final int CODE_SUCCESS_VUALE = 200;

@@ -11,6 +11,7 @@ public class AnimalInfo implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id")
     private int id;
     @Column(name = "animal_ri_name")
     private String animalRiName;
