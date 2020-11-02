@@ -24,13 +24,14 @@ public class UserDeviceService implements IUserDeviceService {
 
     @Override
     public List<UserDevice> findAll(String openId) {
-        return userDeviceDao.findAll();
+        return userDeviceDao.findByActiveFlagAndUserId(1, openId);
     }
 
     @Override
     public void save(UserDevice vo) {
         vo.setUpdateTime(new Date());
-        vo.setActiveFlag(1);
+        if (vo.getActiveFlag() == null || vo.getActiveFlag() == 0)
+            vo.setActiveFlag(1);
         if (vo.getId() == null || vo.getId() == 0) {
             vo.setCreateTime(new Date());
         }

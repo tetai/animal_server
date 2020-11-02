@@ -111,7 +111,7 @@ public class AnimalInfo implements Serializable {
 
     public String getAnimalImg() {
         String temp = animalImg.substring(animalImg.lastIndexOf("/")+1);
-        String url = "animalInfo/image?path=" + temp;
+        String url = "animalInfo/image/" + temp;
         return url;
     }
 
