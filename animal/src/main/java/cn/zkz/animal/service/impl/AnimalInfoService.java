@@ -4,6 +4,7 @@ import cn.zkz.animal.dao.IAnimalInfoDao;
 import cn.zkz.animal.model.dto.SortDto;
 import cn.zkz.animal.model.po.AnimalInfo;
 import cn.zkz.animal.service.IAnimalInfoService;
+import cn.zkz.animal.util.Result;
 import cn.zkz.animal.util.SqlUtil;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -135,5 +136,31 @@ public class AnimalInfoService implements IAnimalInfoService {
             return null;
         }
         return resultList.get(0);
+    }
+
+    @Override
+    public Result getQueryData() {
+        String getXgphSql = "select distinct(substring_index(substring_index(a.animal_fgph,'、',b.help_topic_id+1),'、',-1))\n" +
+                "from t_animal_info as a join mysql.help_topic as b on b.help_topic_id < (char_length(a.animal_fgph) - " +
+                "char_length(replace(a.animal_fgph,'、',''))+1) where a.animal_fgph is not null and a.animal_fgph != ''";
+
+        String getColorSql = "select distinct(substring_index(substring_index(a.animal_color,'、',b.help_topic_id+1),'、',-1))\n" +
+                "from t_animal_info as a join mysql.help_topic as b on b.help_topic_id < (char_length(a.animal_color) - " +
+                "char_length(replace(a.animal_color,'、',''))+1) where a.animal_color is not null and a.animal_color != ''";
+        String getXinggeSql = "select DISTINCT animal_xingge from t_animal_info where animal_xingge is not null and animal_xingge != ''";
+
+        String getZhongzuSql = "select DISTINCT animal_zhongzu from t_animal_info where animal_zhongzu is not null and animal_zhongzu != ''";
+
+        String getLovezuSql = "select DISTINCT animal_love from t_animal_info where animal_love is not null and animal_love != ''";
+
+        List xgphList = entityManager.createNativeQuery(getXgphSql).getResultList();
+        List colorList = entityManager.createNativeQuery(getColorSql).getResultList();
+        List xinggeList = entityManager.createNativeQuery(getXinggeSql).getResultList();
+        List zhongzuList = entityManager.createNativeQuery(getZhongzuSql).getResultList();
+        List loveList = entityManager.createNativeQuery(getLovezuSql).getResultList();
+
+
+        return Result.success().put("xgphList", xgphList).put("colorList", colorList).put("xinggeList", xinggeList).
+                put("zhongzuList", zhongzuList).put("loveList", loveList);
     }
 }

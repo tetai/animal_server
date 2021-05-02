@@ -8,6 +8,15 @@ import java.lang.reflect.Field;
 @Table(name = "t_animal_info")
 public class AnimalInfo implements Serializable {
 
+    private int xuhao;
+
+    public int getXuhao() {
+        return xuhao;
+    }
+
+    public void setXuhao(int xuhao) {
+        this.xuhao = xuhao;
+    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

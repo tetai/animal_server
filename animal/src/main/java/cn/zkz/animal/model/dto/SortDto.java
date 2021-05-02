@@ -1,10 +1,17 @@
 package cn.zkz.animal.model.dto;
 
-import org.springframework.stereotype.Service;
-
 import java.io.Serializable;
 
 public class SortDto implements Serializable {
+
+    public SortDto() {
+        super();
+    }
+
+    public SortDto(String descOrAsc, String sortName) {
+        this.descOrAsc = descOrAsc;
+        this.sortName = sortName;
+    }
 
     private String sortName;
     private String descOrAsc;

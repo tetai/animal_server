@@ -19,7 +19,7 @@
     </Appenders>
 
     <Loggers>
-        <logger name="org.hibernate" level="warn" additivity="false">
+        <logger name="org.hibernate" level="debug" additivity="false">
             <AppenderRef ref="Console"/>
         </logger>
         <logger name="org.springframework.boot" level="warn" additivity="false">
@@ -31,7 +31,7 @@
         <logger name="org.apache.juli.logging" level="warn" additivity="false">
             <AppenderRef ref="Console"/>
         </logger>
-        <Root level="INFO">
+        <Root level="debug">
             <appender-ref ref="ERROR" />
             <appender-ref ref="RollingFile"/>
             <appender-ref ref="Console"/>
